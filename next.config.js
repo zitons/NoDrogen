@@ -19,7 +19,6 @@ module.exports = withBundleAnalyzer({
 
       return config;
    },
-   output: 'export',
    async redirects() {
       return [
          {
