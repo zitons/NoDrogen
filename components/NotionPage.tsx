@@ -14,9 +14,10 @@ import "react-notion-x/src/styles.css";
 import "../components/notion.css";
 import "../app/globals.css";
 import "../components/ui/prism-vsc-dark-plus.css";
-import styles from "../components/ui/styles.module.css";
+// import styles from "../components/ui/styles.module.css";
 
-import Header from "../components/Head";
+import Main from "./Main";
+import Head from "../components/Head";
 import Pageinfo from "./ui/Pageinfo";
 import Footer from "../components/ui/Footer";
 
@@ -143,22 +144,22 @@ export const NotionPage = ({
   previewImagesEnabled,
   rootPageId,
   rootDomain,
-  name,
   title,
-  mainTitle,
+  type,
   data,
+  // icon,
 }: {
   recordMap: ExtendedRecordMap;
   previewImagesEnabled?: boolean;
   rootPageId?: string;
   rootDomain?: string;
-  name: string;
   title: string;
-  mainTitle: string;
+  type: Object;
   data: Object;
+  // icon: string;
 }) => {
   const router = useRouter();
-  console.log(data);
+  console.log(type);
   //   const footer = React.useMemo(() => <Footer />, []);
   if (!recordMap) {
     return null;
@@ -180,7 +181,8 @@ export const NotionPage = ({
           </div>
         }
       >
-        <Header title={title}/>
+      <Main>
+        <Head title={title} type={type} />
         <Pageinfo title={title} data={data} />
         <NotionRenderer
           recordMap={recordMap}
@@ -199,10 +201,11 @@ export const NotionPage = ({
             Tweet,
           }}
         />
-        <div className={styles.container}>
+        <div className="twikoos">
           <Twikoo />
         </div>
-        <Footer name={name} />
+        {/* <Footer name={"name"} /> */}
+      </Main>
       </Suspense>
     </>
   );
